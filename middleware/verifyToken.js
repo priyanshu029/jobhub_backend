@@ -23,11 +23,11 @@ const varifyToken = (req,res,next)=>{
 
 const varifyAndAuthorization = (req, res, next)=>{
     varifyToken(req,res,()=>{
-        if(req.user.id===req.params.id){
+        if(req.user.id || req.user.isAdmin){
             console.log("varifyAndAuthorization }")
             next();
         }else{
-            res.statua(403).json("Your are restricted from performing this task");
+            res.status(403).json("Your are restricted from performing this task");
         }
     });
 }
@@ -38,7 +38,7 @@ const varifyAndAdmin = (req, res, next)=>{
         if(req.user.isAdmin){
             next();
         }else{
-            res.statua(403).json("Your are restricted from performing this task");
+            res.status(403).json("Your are restricted from performing this task");
         }
     });
 }
