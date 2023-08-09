@@ -4,7 +4,7 @@ const { varifyAndAuthorization, varifyToken, varifyAndAdmin } = require("../midd
 
 
 // CREATE BOOKMARKS
-router.post("/", bookmarkController.createBookmark);
+router.post("/", varifyAndAuthorization, bookmarkController.createBookmark);
 
 
 // DELETE BOOKMARKS
