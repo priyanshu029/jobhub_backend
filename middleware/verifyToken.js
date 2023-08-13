@@ -8,11 +8,7 @@ const varifyToken = (req,res,next)=>{
         
         jwt.verify(token,"jobhub2023",async(err,user)=>{
             if(err) res.status(403).json("Invalid token");
-
             req.user = user;
-
-            console.log(user);
-
             next();
         });
     }else{
@@ -24,7 +20,6 @@ const varifyToken = (req,res,next)=>{
 const varifyAndAuthorization = (req, res, next)=>{
     varifyToken(req,res,()=>{
         if(req.user.id || req.user.isAdmin){
-            console.log("varifyAndAuthorization }")
             next();
         }else{
             res.status(403).json("Your are restricted from performing this task");

@@ -43,7 +43,7 @@ module.exports = {
         }
     },
 
-    getJob: async (req, res) => {
+    getJob: async (req, res) => { 
         try {
             const getJob = await Job.findById(req.params.id);
 
